@@ -1,0 +1,125 @@
+[
+    {
+        "id": "aad6f0ec269cb136",
+        "type": "tab",
+        "label": "Grafica Android Device",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5ac5c741187f9f98",
+        "type": "inject",
+        "z": "aad6f0ec269cb136",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 70,
+        "y": 360,
+        "wires": [
+            [
+                "f4ad39cf5d879344"
+            ]
+        ]
+    },
+    {
+        "id": "f4ad39cf5d879344",
+        "type": "function",
+        "z": "aad6f0ec269cb136",
+        "name": "function 1",
+        "func": "// Configuración de los límites para el número aleatorio\nconst min = -20; // Valor mínimo (inclusivo)\nconst max = 50; // Valor máximo (inclusive)\n\n// Generar un número aleatorio en el rango [min, max]\nconst randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;\n\n// Asignar el número aleatorio al payload del mensaje\nmsg.payload = randomNumber;\n\n// Devolver el mensaje\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 360,
+        "wires": [
+            [
+                "486e313041c23911",
+                "8230ffa93d3dd845"
+            ]
+        ]
+    },
+    {
+        "id": "486e313041c23911",
+        "type": "mqtt out",
+        "z": "aad6f0ec269cb136",
+        "name": "",
+        "topic": "temperature/topic/oivm",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "33d91667498d570b",
+        "x": 440,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "8230ffa93d3dd845",
+        "type": "debug",
+        "z": "aad6f0ec269cb136",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "33d91667498d570b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.emqx.io",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
